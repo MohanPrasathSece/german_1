@@ -49,7 +49,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
           localStorage.setItem("sessionToken", data.token);
           navigate("/dashboard");
         } else {
-          setError(data.message || data.error || "An unexpected failure occurred.");
+          setError(data.message || data.error || "Ein unerwarteter Fehler ist aufgetreten.");
         }
       } else {
         const parts = formData.name.trim().split(" ");
@@ -82,11 +82,11 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
              navigate("/dashboard");
           }
         } else {
-          setError(data.message || data.error || "An unexpected failure occurred.");
+          setError(data.message || data.error || "Ein unerwarteter Fehler ist aufgetreten.");
         }
       }
     } catch (err) {
-      setError("An unexpected failure occurred while connecting to the server.");
+      setError("Ein unerwarteter Fehler beim Verbinden mit dem Server ist aufgetreten.");
     } finally {
       setLoading(false);
     }
@@ -114,7 +114,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
             >
               <div className="flex items-center justify-between mb-8">
                 <h2 className="font-display text-2xl tracking-tight">
-                  {mode === "login" ? "Investor Login" : "Create Account"}
+                  {mode === "login" ? "Investoren-Login" : "Konto erstellen"}
                 </h2>
                 <button
                   onClick={handleClose}
@@ -140,7 +140,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {mode === "signup" && (
                   <div>
-                    <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Full Name</label>
+                    <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Vollständiger Name</label>
                     <input
                       required
                       type="text"
@@ -154,7 +154,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                 )}
 
                 <div>
-                  <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Email Address</label>
+                  <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">E-Mail-Adresse</label>
                   <input
                     required
                     type="email"
@@ -170,7 +170,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                   <>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Country</label>
+                        <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Land</label>
                         <CountryDropdown 
                           value={formData.country} 
                           onChange={(v) => setFormData({ ...formData, country: v })}
@@ -178,7 +178,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                         />
                       </div>
                       <div>
-                        <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Phone Number</label>
+                        <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Telefonnummer</label>
                         <input
                           required
                           type="tel"
@@ -198,16 +198,16 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                   disabled={loading}
                   className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft disabled:opacity-50"
                 >
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === "login" ? "Login Securely" : "Submit Details"}
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === "login" ? "Sicher anmelden" : "Daten übermitteln"}
                   {!loading && <ArrowUpRight className="h-4 w-4" />}
                 </button>
               </form>
 
               <div className="mt-6 text-center text-sm text-muted-foreground">
                 {mode === "login" ? (
-                  <p>Don't have an account? <button type="button" onClick={() => setMode("signup")} className="text-primary hover:underline">Apply here</button></p>
+                  <p>Noch kein Konto? <button type="button" onClick={() => setMode("signup")} className="text-primary hover:underline">Hier bewerben</button></p>
                 ) : (
-                  <p>Already an investor? <button type="button" onClick={() => setMode("login")} className="text-primary hover:underline">Login here</button></p>
+                  <p>Bereits Investor? <button type="button" onClick={() => setMode("login")} className="text-primary hover:underline">Hier anmelden</button></p>
                 )}
               </div>
             </motion.div>

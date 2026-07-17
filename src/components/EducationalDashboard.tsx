@@ -48,12 +48,12 @@ export function EducationalDashboard() {
       const data = await res.json();
       if (res.ok) {
         setSent(true);
-        setSuccess(data.message || "Contact submission successful.");
+        setSuccess(data.message || "Kontaktanfrage erfolgreich gesendet.");
       } else {
-        setError(data.message || data.error || "An unexpected failure occurred.");
+        setError(data.message || data.error || "Ein unerwarteter Fehler ist aufgetreten.");
       }
     } catch (err) {
-      setError("An unexpected failure occurred while connecting to the server.");
+      setError("Ein unerwarteter Fehler beim Verbinden mit dem Server ist aufgetreten.");
     } finally {
       setLoading(false);
     }
@@ -75,7 +75,7 @@ export function EducationalDashboard() {
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-9 text-sm text-muted-foreground md:flex">
-            {[{label: "Portfolio", href: "#portfolio"}, {label: "Security", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
+            {[{label: "Portfolio", href: "#portfolio"}, {label: "Sicherheit", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
               <a key={l.label} href={l.href} className="transition-colors hover:text-foreground">{l.label}</a>
             ))}
           </nav>
@@ -86,7 +86,7 @@ export function EducationalDashboard() {
               className="hidden md:flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
             >
               <LogOut className="h-4 w-4" />
-              Sign Out
+              Abmelden
             </button>
             <button className="md:hidden p-2 text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -104,7 +104,7 @@ export function EducationalDashboard() {
               className="absolute inset-x-4 top-full mt-2 rounded-2xl border border-border bg-background/95 p-6 shadow-2xl backdrop-blur-xl md:hidden"
             >
               <nav className="flex flex-col gap-4">
-                {[{label: "Portfolio", href: "#portfolio"}, {label: "Security", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
+                {[{label: "Portfolio", href: "#portfolio"}, {label: "Sicherheit", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
                   <a key={l.label} href={l.href} onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-muted-foreground hover:text-foreground">
                     {l.label}
                   </a>
@@ -115,7 +115,7 @@ export function EducationalDashboard() {
                   className="flex w-full items-center justify-center gap-2 rounded-full border border-border bg-surface px-4 py-3 text-sm font-medium transition-colors hover:bg-muted"
                 >
                   <LogOut className="h-4 w-4" />
-                  Sign Out
+                  Abmelden
                 </button>
               </nav>
             </motion.div>
@@ -132,10 +132,10 @@ export function EducationalDashboard() {
       <div className="mx-auto max-w-7xl px-6 pt-24 flex-1">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl mb-24">
           <h1 className="text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl mb-6">
-            Welcome to <em className="font-display italic text-gradient-gold">Aurelian Insights</em>
+            Willkommen bei <em className="font-display italic text-gradient-gold">Aurelian Insights</em>
           </h1>
           <p className="text-lg text-muted-foreground">
-            Understand how we secure your capital and optimize your portfolio through institutional-grade strategies.
+            Verstehen Sie, wie wir Ihr Kapital sichern und Ihr Portfolio durch Strategien auf institutionellem Niveau optimieren.
           </p>
         </motion.div>
 
@@ -143,14 +143,14 @@ export function EducationalDashboard() {
         <motion.section id="portfolio" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-32 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-primary">
-              <span className="h-px w-8 bg-primary" /> Portfolio Growth
+              <span className="h-px w-8 bg-primary" /> Portfoliowachstum
             </div>
-            <h2 className="text-3xl sm:text-4xl mb-6">How we optimize your returns</h2>
+            <h2 className="text-3xl sm:text-4xl mb-6">Wie wir Ihre Renditen optimieren</h2>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              We leverage quantitative models and deep market analysis to identify asymmetrical opportunities. By actively managing your allocation across diverse digital assets, we aim to capture upside volatility while strictly capping downside risk.
+              Wir nutzen quantitative Modelle und tiefgehende Marktanalysen, um asymmetrische Chancen zu identifizieren. Durch die aktive Verwaltung Ihrer Allokation über verschiedene digitale Vermögenswerte hinweg, zielen wir darauf ab, Aufwärtsvolatilität zu erfassen und das Abwärtsrisiko strikt zu begrenzen.
             </p>
             <ul className="space-y-4">
-              {["Algorithmic rebalancing during market inefficiencies", "Yield generation through institutional staking", "Strategic exposure to emerging market leaders"].map((item, i) => (
+              {["Algorithmische Neugewichtung bei Marktineffizienzen", "Renditegenerierung durch institutionelles Staking", "Strategisches Engagement bei aufstrebenden Marktführern"].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm text-foreground/80">
                   <CheckCircle className="h-4 w-4 text-primary" /> {item}
                 </li>
@@ -193,16 +193,16 @@ export function EducationalDashboard() {
 
           <div className="order-1 lg:order-2">
             <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-primary">
-              <span className="h-px w-8 bg-primary" /> Security First
+              <span className="h-px w-8 bg-primary" /> Sicherheit zuerst
             </div>
-            <h2 className="text-3xl sm:text-4xl mb-6">Institutional Grade Custody</h2>
+            <h2 className="text-3xl sm:text-4xl mb-6">Verwahrung auf institutionellem Niveau</h2>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Security is not an afterthought; it is the foundation of our infrastructure. Client assets are stored in cold, multi-signature vaults protected by geographically distributed keys.
+              Sicherheit ist kein nachträglicher Gedanke; sie ist das Fundament unserer Infrastruktur. Kundenvermögen werden in Cold-Storage, Multi-Signatur-Tresoren gespeichert, die durch geografisch verteilte Schlüssel geschützt sind.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Lock, title: "Cold Storage", desc: "100% offline asset protection" },
-                { icon: ShieldCheck, title: "Multi-Sig", desc: "No single point of failure" },
+                { icon: Lock, title: "Cold Storage", desc: "100% Offline-Schutz der Vermögenswerte" },
+                { icon: ShieldCheck, title: "Multi-Sig", desc: "Kein Single Point of Failure" },
               ].map((s, i) => (
                 <div key={i} className="rounded-2xl border border-border bg-background/50 p-4">
                   <s.icon className="h-6 w-6 text-primary mb-3" />
@@ -217,8 +217,8 @@ export function EducationalDashboard() {
         {/* Contact Form Section */}
         <motion.section id="contact" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl mb-4">Ready to elevate your portfolio?</h2>
-            <p className="text-muted-foreground">Reach out to your dedicated portfolio manager directly.</p>
+            <h2 className="text-3xl sm:text-4xl mb-4">Bereit, Ihr Portfolio zu verbessern?</h2>
+            <p className="text-muted-foreground">Wenden Sie sich direkt an Ihren engagierten Portfoliomanager.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 md:p-10 border border-border">
@@ -236,12 +236,12 @@ export function EducationalDashboard() {
 
             <div className="grid gap-5 md:grid-cols-2">
               <label className="relative block">
-                <input required type="text" className={inputBase} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="Full Name" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Full Name</span>
+                <input required type="text" className={inputBase} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="Vollständiger Name" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Vollständiger Name</span>
               </label>
               <label className="relative block">
-                <input required type="email" className={inputBase} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="Email Address" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Email Address</span>
+                <input required type="email" className={inputBase} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="E-Mail-Adresse" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">E-Mail-Adresse</span>
               </label>
               <div className="relative block">
                  <div className="[&>div]:!bg-background/50 [&>div]:!pt-[1.4rem] [&>div]:!pb-2">
@@ -249,19 +249,19 @@ export function EducationalDashboard() {
                  </div>
               </div>
               <label className="relative block">
-                <input required type="tel" className={inputBase} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="Phone Number" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Phone Number</span>
+                <input required type="tel" className={inputBase} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="Telefonnummer" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Telefonnummer</span>
               </label>
             </div>
             <div className="mt-5">
               <label className="relative block">
-                <textarea rows={4} className={inputBase} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Message (Optional)" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Message (Optional)</span>
+                <textarea rows={4} className={inputBase} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Nachricht (Optional)" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Nachricht (Optional)</span>
               </label>
             </div>
             <div className="mt-8 flex justify-end">
               <button disabled={loading || sent} type="submit" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft disabled:opacity-50">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Message Sent" : "Send Secure Message"}
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Nachricht gesendet" : "Sichere Nachricht senden"}
                 {!loading && !sent && <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
               </button>
             </div>

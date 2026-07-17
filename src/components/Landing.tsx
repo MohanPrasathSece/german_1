@@ -78,10 +78,10 @@ function Nav({ onLoginClick }: { onLoginClick: () => void }) {
   }, []);
 
   const links = [
-    { label: "Home", href: "#" },
-    { label: "Exclusivity", href: "#exclusivity" },
+    { label: "Startseite", href: "#" },
+    { label: "Exklusivität", href: "#exclusivity" },
     { label: "FAQ", href: "#faq" },
-    { label: "Apply", href: "#contact" },
+    { label: "Bewerben", href: "#contact" },
   ];
 
   return (
@@ -103,7 +103,7 @@ function Nav({ onLoginClick }: { onLoginClick: () => void }) {
 
           <div className="hidden md:block">
             <button onClick={onLoginClick} className="rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:bg-secondary">
-              Investor Login
+              Investoren-Login
             </button>
           </div>
 
@@ -149,7 +149,7 @@ function Nav({ onLoginClick }: { onLoginClick: () => void }) {
               }} 
               className="mt-8 rounded-full bg-primary py-4 text-center text-primary-foreground font-medium"
             >
-              Investor Login
+              Investoren-Login
             </button>
           </motion.div>
         )}
@@ -182,7 +182,7 @@ function Hero() {
           initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs text-primary backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-primary animate-glow-pulse" />
-          Q3 Tranche Closing · 1,497 of 1,500 Client Seats Filled
+          Q3-Tranche schließt · 1.497 von 1.500 Kundenplätzen belegt
         </motion.div>
 
         <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
@@ -190,27 +190,27 @@ function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16,1,0.3,1] }}
               className="text-4xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-              Compound your capital with <em className="font-display italic text-gradient-gold">institutional discipline</em>.
+              Vermehren Sie Ihr Kapital mit <em className="font-display italic text-gradient-gold">institutioneller Disziplin</em>.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
               className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Aurelian Capital enforces a strict hard cap on active mandates to maximize ROI and protect outsized returns for our clients. 
-              With institutional demand surging, our Q3 allocation is 99% full. Apply immediately to bypass the 14-month waitlist.
+              Aurelian Capital setzt eine strikte Obergrenze für aktive Mandate durch, um den ROI zu maximieren und überdurchschnittliche Renditen für unsere Kunden zu schützen. 
+              Da die institutionelle Nachfrage steigt, ist unsere Q3-Zuteilung zu 99% ausgeschöpft. Bewerben Sie sich sofort, um die 14-monatige Warteliste zu umgehen.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}
               className="mt-8 flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-4">
-              <MagneticButton href="#contact">Apply for 1 of 3 Remaining Seats</MagneticButton>
-              <MagneticButton variant="ghost" href="#contact">Join the Waitlist</MagneticButton>
+              <MagneticButton href="#contact">Auf 1 von 3 verbleibenden Plätzen bewerben</MagneticButton>
+              <MagneticButton variant="ghost" href="#contact">Auf die Warteliste setzen</MagneticButton>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 1 }}
               className="mt-10 sm:mt-16 flex flex-wrap items-center gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-4 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.24em] text-muted-foreground">
-              <span className="flex items-center gap-1.5 sm:gap-2"><Lock className="h-3.5 w-3.5 text-primary" /> SOC 2 Type II</span>
-              <span className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Qualified Custody</span>
-              <span className="flex items-center gap-2"><Award className="h-3.5 w-3.5 text-primary" /> FinCEN Registered</span>
+              <span className="flex items-center gap-1.5 sm:gap-2"><Lock className="h-3.5 w-3.5 text-primary" /> SOC 2 Typ II</span>
+              <span className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Qualifizierte Verwahrung</span>
+              <span className="flex items-center gap-2"><Award className="h-3.5 w-3.5 text-primary" /> FinCEN registriert</span>
             </motion.div>
           </div>
 
@@ -220,7 +220,7 @@ function Hero() {
             className="relative lg:mt-12">
             <div className="glass relative rounded-3xl p-6 shadow-[var(--shadow-elegant)]">
               <div className="flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
-                <span>Closed Institutional Portfolio</span>
+                <span>Geschlossenes institutionelles Portfolio</span>
                 <span className="flex items-center gap-1 text-primary"><TrendingUp className="h-3 w-3" /> Live</span>
               </div>
               <div className="mt-6 flex items-end justify-between">
@@ -228,7 +228,7 @@ function Hero() {
                   <div className="font-display text-4xl sm:text-5xl tracking-tight">
                     <Counter to={42.7} decimals={1} suffix="%" />
                   </div>
-                  <div className="mt-1 text-xs text-muted-foreground">Annualized net return · 3Y</div>
+                  <div className="mt-1 text-xs text-muted-foreground">Annualisierte Nettorendite · 3J</div>
                 </div>
                 <div className="text-right text-xs text-muted-foreground">
                   <div>AUM</div>
@@ -270,7 +270,7 @@ function Hero() {
             <motion.div
               animate={{ y: [0, 12, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
               className="glass absolute -bottom-6 -right-4 hidden rounded-2xl px-4 py-3 md:block border border-primary/30 bg-primary/5">
-              <div className="text-[10px] uppercase tracking-widest text-primary font-bold">Seats Remaining</div>
+              <div className="text-[10px] uppercase tracking-widest text-primary font-bold">Verbleibende Plätze</div>
               <div className="font-display text-xl text-primary">3</div>
             </motion.div>
           </motion.div>
@@ -308,10 +308,10 @@ function Hero() {
 
 
 const faqs = [
-  { q: "How do you consistently improve our invested capital?", a: "By combining AI-assisted quantitative models with rigorous risk management, we aggressively harvest market volatility to compound your portfolio through every cycle." },
-  { q: "How are my assets custodied while generating yield?", a: "All client assets are held with qualified third-party custodians in segregated, insured cold-storage - never on our balance sheet." },
-  { q: "How often is the portfolio rebalanced for maximum ROI?", a: "Weekly by mandate, with intra-week tactical adjustments during defined regime shifts to protect and grow your capital." },
-  { q: "Can I withdraw my gains at any time?", a: "Yes. Liquidity is T+2 for most mandates, with no lockups on our core strategies." },
+  { q: "Wie verbessern Sie kontinuierlich unser investiertes Kapital?", a: "Durch die Kombination KI-gestützter quantitativer Modelle mit rigorosem Risikomanagement nutzen wir die Marktvolatilität aggressiv, um Ihr Portfolio über jeden Zyklus hinweg zu vergrößern." },
+  { q: "Wie werden meine Vermögenswerte verwahrt, während Renditen erzielt werden?", a: "Alle Kundenvermögenswerte werden bei qualifizierten Drittverwahrern in segregierten, versicherten Cold-Storage-Systemen gehalten - niemals in unserer eigenen Bilanz." },
+  { q: "Wie oft wird das Portfolio für maximalen ROI neu gewichtet?", a: "Gemäß dem Mandat wöchentlich, mit taktischen Anpassungen unter der Woche während definierter Regimewechsel, um Ihr Kapital zu schützen und zu vermehren." },
+  { q: "Kann ich meine Gewinne jederzeit abheben?", a: "Ja. Die Liquidität beträgt für die meisten Mandate T+2, ohne Sperrfristen bei unseren Kernstrategien." },
 ];
 
 function Results() {
@@ -320,12 +320,12 @@ function Results() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionLabel
-            eyebrow="Highly Exclusive & Proven"
-            title={<>Trusted by leading institutions. <em className="font-display italic text-gradient-gold">Closed to the general public</em>.</>}
+            eyebrow="Hochexklusiv & Bewährt"
+            title={<>Vertraut von führenden Institutionen. <em className="font-display italic text-gradient-gold">Für die breite Öffentlichkeit geschlossen</em>.</>}
           />
           <div className="flex items-center gap-2">
             {[...Array(5)].map((_,i) => <Star key={i} className="h-5 w-5 fill-primary text-primary" />)}
-            <span className="ml-2 text-sm text-muted-foreground">Allocations strictly capped at 1,500 active clients.</span>
+            <span className="ml-2 text-sm text-muted-foreground">Zuteilungen strikt auf 1.500 aktive Kunden begrenzt.</span>
           </div>
         </div>
 
@@ -333,8 +333,8 @@ function Results() {
         <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div>
             <div className="text-xs uppercase tracking-widest text-primary">FAQ</div>
-            <h3 className="mt-4 text-3xl leading-tight">Questions before you allocate?</h3>
-            <p className="mt-4 text-sm text-muted-foreground">Every mandate starts with a conversation. If your question isn't here, our team responds within one business day.</p>
+            <h3 className="mt-4 text-3xl leading-tight">Fragen, bevor Sie investieren?</h3>
+            <p className="mt-4 text-sm text-muted-foreground">Jedes Mandat beginnt mit einem Gespräch. Wenn Ihre Frage hier nicht aufgeführt ist, antwortet unser Team innerhalb eines Werktages.</p>
           </div>
           <div className="divide-y divide-border rounded-3xl border border-border">
             {faqs.map((f) => (
@@ -416,9 +416,9 @@ function Contact() {
       </div>
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel
-          eyebrow="Final Call: Q3 Allocation Closing"
-          title={<>Secure one of the final <em className="font-display italic text-gradient-gold">3 client mandates</em>.</>}
-          kicker="Due to unprecedented institutional demand and our strict cap on active mandates, Q3 enrollment is closing permanently within 48 hours. Submit your details immediately to bypass the waitlist and secure a priority consultation."
+          eyebrow="Letzter Aufruf: Q3-Zuteilung schließt"
+          title={<>Sichern Sie sich eines der letzten <em className="font-display italic text-gradient-gold">3 Kundenmandate</em>.</>}
+          kicker="Aufgrund beispielloser institutioneller Nachfrage und unserer strikten Obergrenze für aktive Mandate schließt die Q3-Anmeldung in 48 Stunden dauerhaft. Übermitteln Sie Ihre Daten sofort, um die Warteliste zu umgehen und sich eine vorrangige Beratung zu sichern."
         />
 
         <div className="mt-16 mx-auto max-w-2xl">
@@ -440,12 +440,12 @@ function Contact() {
 
             <div className="grid gap-5 md:grid-cols-2">
               <label className="relative block">
-                <input required type="text" className={inputBase} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="Full Name" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Full Name</span>
+                <input required type="text" className={inputBase} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="Vollständiger Name" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Vollständiger Name</span>
               </label>
               <label className="relative block">
-                <input required type="email" className={inputBase} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="Email Address" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Email Address</span>
+                <input required type="email" className={inputBase} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="E-Mail-Adresse" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">E-Mail-Adresse</span>
               </label>
               <div className="relative block">
                  <div className="[&>div]:!bg-background/50 [&>div]:!pt-[1.4rem] [&>div]:!pb-2">
@@ -453,20 +453,20 @@ function Contact() {
                  </div>
               </div>
               <label className="relative block">
-                <input required type="tel" className={inputBase} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="Phone Number" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Phone Number</span>
+                <input required type="tel" className={inputBase} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="Telefonnummer" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Telefonnummer</span>
               </label>
             </div>
             <div className="mt-5">
               <label className="relative block">
-                <textarea rows={4} className={inputBase} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Message (Optional)" />
-                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Message (Optional)</span>
+                <textarea rows={4} className={inputBase} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Nachricht (Optional)" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Nachricht (Optional)</span>
               </label>
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-xs text-muted-foreground">By submitting, you consent to being contacted by an Aurelian advisor.</p>
+              <p className="text-xs text-muted-foreground">Mit dem Absenden stimmen Sie zu, von einem Aurelian-Berater kontaktiert zu werden.</p>
               <button disabled={loading || sent} type="submit" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft disabled:opacity-50">
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Request Received" : "Request Consultation"}
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Anfrage erhalten" : "Beratung anfordern"}
                 {!loading && !sent && <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
               </button>
             </div>
@@ -506,15 +506,15 @@ function Exclusivity() {
     <section id="exclusivity" className="relative py-32 border-y border-border/50 bg-surface/30">
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel
-          eyebrow="Strict Capacity Constraints"
-          title={<>Why our mandates are <em className="font-display italic text-gradient-gold">impossible to get</em>.</>}
-          kicker="Aurelian Capital’s algorithmic trading models are highly sensitive to market liquidity. If our AUM scales beyond our proprietary threshold, yields compress. To protect the outsized returns of our existing partners, we enforce a ruthless hard cap on active capital. We do not apologize for this exclusivity."
+          eyebrow="Strenge Kapazitätsgrenzen"
+          title={<>Warum unsere Mandate <em className="font-display italic text-gradient-gold">unmöglich zu bekommen sind</em>.</>}
+          kicker="Die algorithmischen Handelsmodelle von Aurelian Capital reagieren sehr empfindlich auf Marktliquidität. Wenn unsere AUM unsere proprietäre Schwelle überschreiten, sinken die Renditen. Um die überdurchschnittlichen Renditen unserer bestehenden Partner zu schützen, setzen wir eine rücksichtslose Obergrenze für aktives Kapital durch. Wir entschuldigen uns nicht für diese Exklusivität."
         />
         <div className="mt-16 grid gap-8 md:grid-cols-3">
           {[
-            { n: "1,500", l: "Absolute Client Cap" },
-            { n: "14 Mo", l: "Current Waitlist" },
-            { n: "3", l: "Slots Available Now" },
+            { n: "1.500", l: "Absolute Kundenobergrenze" },
+            { n: "14 Mon", l: "Aktuelle Warteliste" },
+            { n: "3", l: "Jetzt verfügbare Plätze" },
           ].map(s => (
             <motion.div
               key={s.l}
@@ -533,11 +533,11 @@ function Exclusivity() {
 /* ---------------- ROOT ---------------- */
 
 const popupMessages = [
-  "1 mandate just secured by a Family Office in Geneva",
-  "Institutional allocation filled from London",
-  "Waitlist bypassed: Client admitted from Zurich",
-  "Capacity warning: Only 2 priority slots remaining",
-  "New mandate secured by a private client in Dubai"
+  "1 Mandat gerade von einem Family Office in Genf gesichert",
+  "Institutionelle Zuteilung aus London besetzt",
+  "Warteliste umgangen: Kunde aus Zürich aufgenommen",
+  "Kapazitätswarnung: Nur noch 2 priorisierte Plätze verfügbar",
+  "Neues Mandat durch einen Privatkunden in Dubai gesichert"
 ];
 
 function FomoPopup() {
@@ -608,18 +608,18 @@ function UrgentModal() {
               <div className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-primary">
                 <Lock className="h-8 w-8" />
               </div>
-              <h2 className="font-display text-3xl text-gradient-gold sm:text-4xl pb-1">High Demand Notice</h2>
+              <h2 className="font-display text-3xl text-gradient-gold sm:text-4xl pb-1">Hinweis auf hohe Nachfrage</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Due to extremely high demand, our current enrollment is almost entirely full. We currently have exactly <strong className="text-foreground">3 spots remaining</strong> for new clients.
+                Aufgrund extrem hoher Nachfrage ist unsere aktuelle Anmeldung fast vollständig belegt. Wir haben derzeit genau <strong className="text-foreground">3 Plätze frei</strong> für Neukunden.
               </p>
               <p className="mt-4 text-sm text-primary font-medium">
-                Once these final spots are taken, you will be placed on a 14-month waitlist.
+                Sobald diese letzten Plätze belegt sind, werden Sie auf eine 14-monatige Warteliste gesetzt.
               </p>
               <button 
                 onClick={() => setOpen(false)}
                 className="mt-10 w-full rounded-full bg-primary px-6 py-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft"
               >
-                I Understand & Enter Site
+                Ich verstehe & betrete die Website
               </button>
             </div>
           </motion.div>
