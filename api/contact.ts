@@ -1,4 +1,6 @@
 export default async function handler(req: any, res: any) {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
