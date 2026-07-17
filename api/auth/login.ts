@@ -30,7 +30,7 @@ export default async function handler(req: any, res: any) {
     await put(sessionFileName, JSON.stringify({
       email,
       createdAt: new Date().toISOString()
-    }), { access: "private", addRandomSuffix: false });
+    }), { access: "public", addRandomSuffix: false });
 
     return res.status(200).json({
       success: true,

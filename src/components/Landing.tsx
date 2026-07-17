@@ -40,7 +40,7 @@ function MagneticButton({ children, variant = "primary", href = "#" }: { childre
     y.set((e.clientY - r.top - r.height / 2) * 0.25);
   };
   const reset = () => { x.set(0); y.set(0); };
-  const base = "group relative inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors";
+  const base = "group relative inline-flex w-full justify-center sm:w-auto items-center gap-2 rounded-full px-5 py-3 md:px-7 md:py-3.5 text-sm font-medium tracking-wide transition-colors";
   const styles = variant === "primary"
     ? "bg-primary text-primary-foreground hover:bg-gold-soft"
     : "border border-border text-foreground hover:bg-secondary";
@@ -189,7 +189,7 @@ function Hero() {
           <div>
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16,1,0.3,1] }}
-              className="text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+              className="text-4xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
               Compound your capital with <em className="font-display italic text-gradient-gold">institutional discipline</em>.
             </motion.h1>
             <motion.p
@@ -200,15 +200,15 @@ function Hero() {
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}
-              className="mt-10 flex flex-wrap items-center gap-4">
+              className="mt-8 flex flex-col sm:flex-row flex-wrap items-center gap-3 sm:gap-4">
               <MagneticButton href="#contact">Apply for 1 of 3 Remaining Seats</MagneticButton>
               <MagneticButton variant="ghost" href="#contact">Join the Waitlist</MagneticButton>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 1 }}
-              className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-4 text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              <span className="flex items-center gap-2"><Lock className="h-3.5 w-3.5 text-primary" /> SOC 2 Type II</span>
+              className="mt-10 sm:mt-16 flex flex-wrap items-center gap-x-4 gap-y-3 sm:gap-x-8 sm:gap-y-4 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.24em] text-muted-foreground">
+              <span className="flex items-center gap-1.5 sm:gap-2"><Lock className="h-3.5 w-3.5 text-primary" /> SOC 2 Type II</span>
               <span className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Qualified Custody</span>
               <span className="flex items-center gap-2"><Award className="h-3.5 w-3.5 text-primary" /> FinCEN Registered</span>
             </motion.div>
@@ -225,7 +225,7 @@ function Hero() {
               </div>
               <div className="mt-6 flex items-end justify-between">
                 <div>
-                  <div className="font-display text-5xl tracking-tight">
+                  <div className="font-display text-4xl sm:text-5xl tracking-tight">
                     <Counter to={42.7} decimals={1} suffix="%" />
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground">Annualized net return · 3Y</div>
@@ -573,7 +573,7 @@ function FomoPopup() {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
-          className="fixed bottom-6 left-6 z-[100] flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/90 p-4 shadow-[0_0_40px_oklch(0.82_0.14_78/0.2)] backdrop-blur-xl"
+          className="hidden md:flex fixed bottom-6 left-6 z-[100] items-center gap-3 rounded-2xl border border-primary/30 bg-background/90 p-4 shadow-[0_0_40px_oklch(0.82_0.14_78/0.2)] backdrop-blur-xl"
         >
           <div className="grid h-8 w-8 place-items-center rounded-full bg-primary/20 text-primary">
             <TrendingUp className="h-4 w-4" />
@@ -608,7 +608,7 @@ function UrgentModal() {
               <div className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-primary">
                 <Lock className="h-8 w-8" />
               </div>
-              <h2 className="font-display text-3xl text-gradient-gold sm:text-4xl">High Demand Notice</h2>
+              <h2 className="font-display text-3xl text-gradient-gold sm:text-4xl pb-1">High Demand Notice</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                 Due to extremely high demand, our current enrollment is almost entirely full. We currently have exactly <strong className="text-foreground">3 spots remaining</strong> for new clients.
               </p>

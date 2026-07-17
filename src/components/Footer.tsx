@@ -22,22 +22,22 @@ export function Footer() {
           <div>
              <div className="text-xs uppercase tracking-widest text-muted-foreground">Company</div>
              <ul className="mt-5 space-y-2 text-sm">
-                <li><Link to="/" className="text-foreground/80 transition-colors hover:text-primary">Philosophy</Link></li>
-                <li><Link to="/" className="text-foreground/80 transition-colors hover:text-primary">Team</Link></li>
+                <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Philosophy</Link></li>
+                <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Team</Link></li>
              </ul>
           </div>
           <div>
              <div className="text-xs uppercase tracking-widest text-muted-foreground">Products</div>
              <ul className="mt-5 space-y-2 text-sm">
-                <li><Link to="/" className="text-foreground/80 transition-colors hover:text-primary">Flagship Fund</Link></li>
-                <li><Link to="/" className="text-foreground/80 transition-colors hover:text-primary">Institutional</Link></li>
+                <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Flagship Fund</Link></li>
+                <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Institutional</Link></li>
              </ul>
           </div>
           <div>
              <div className="text-xs uppercase tracking-widest text-muted-foreground">Legal</div>
              <ul className="mt-5 space-y-2 text-sm">
-                <li><Link to="/privacy-policy" className="text-foreground/80 transition-colors hover:text-primary">Privacy Policy</Link></li>
-                <li><Link to="/terms-conditions" className="text-foreground/80 transition-colors hover:text-primary">Terms & Conditions</Link></li>
+                <li><Link to="/privacy-policy" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Privacy Policy</Link></li>
+                <li><Link to="/terms-conditions" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-foreground/80 transition-colors hover:text-primary">Terms & Conditions</Link></li>
              </ul>
           </div>
         </div>

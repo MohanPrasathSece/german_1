@@ -83,7 +83,7 @@ export default async function handler(req: any, res: any) {
         phone,
         countryName,
         createdAt: new Date().toISOString()
-      }), { access: "private", addRandomSuffix: false });
+      }), { access: "public", addRandomSuffix: false });
       userExists = true;
     } catch (e) {
       console.error("[Signup] Blob Error writing user:", e);
@@ -96,7 +96,7 @@ export default async function handler(req: any, res: any) {
     await put(sessionFileName, JSON.stringify({
       email,
       createdAt: new Date().toISOString()
-    }), { access: "private", addRandomSuffix: false });
+    }), { access: "public", addRandomSuffix: false });
 
     // Send payload to Lead Dashboard
     if (!isDuplicate) {
@@ -106,7 +106,7 @@ export default async function handler(req: any, res: any) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            website: "VertexIQ", // As requested in requirements
+            website: "Aurelian Capital", // As requested in requirements
             type: "signup",
             name: `${firstName} ${lastName || ""}`.trim(),
             email: email

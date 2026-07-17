@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ShieldCheck, TrendingUp, Lock, CheckCircle, Loader2 } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, TrendingUp, Lock, CheckCircle, Loader2, LogOut, Sparkles } from "lucide-react";
 import { CountryDropdown } from "./CountryDropdown";
 import { Footer } from "./Footer";
+import { useNavigate, Link } from "react-router-dom";
 
 export function EducationalDashboard() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", country: "CH", message: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -52,14 +54,33 @@ export function EducationalDashboard() {
   const inputBase = "peer w-full rounded-xl border border-border bg-background/50 px-4 pb-2.5 pt-6 text-sm text-foreground placeholder-transparent transition-colors focus:border-primary focus:outline-none";
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-32 overflow-hidden">
+    <div className="min-h-screen bg-background pb-32 overflow-hidden flex flex-col">
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+          </Link>
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+          >
+            <LogOut className="h-4 w-4" />
+            Sign Out
+          </button>
+        </div>
+      </header>
+
       {/* Background glow */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
+      <div className="pointer-events-none fixed inset-0 -z-10 mt-16">
         <div className="absolute top-0 right-1/4 h-[400px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="absolute bottom-0 left-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[140px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 pt-24 flex-1">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl mb-24">
           <h1 className="text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl mb-6">
             Welcome to <em className="font-display italic text-gradient-gold">Aurelian Insights</em>
