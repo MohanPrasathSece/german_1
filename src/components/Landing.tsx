@@ -410,7 +410,7 @@ function Contact() {
   const inputBase = "peer w-full rounded-xl border border-border bg-background/50 px-4 pb-2.5 pt-6 text-sm text-foreground placeholder-transparent transition-colors focus:border-primary focus:outline-none";
 
   return (
-    <section id="contact" className="relative py-32">
+    <section id="contact" className="relative py-32 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]" />
       </div>
@@ -633,7 +633,7 @@ export default function Landing() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
   return (
-    <main className="relative">
+    <main className="relative overflow-x-hidden">
       <UrgentModal />
       <FomoPopup />
       <Nav onLoginClick={() => setAuthModalOpen(true)} />
