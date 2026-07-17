@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, ShieldCheck, TrendingUp, Lock, CheckCircle, Loader2, LogOut, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ShieldCheck, TrendingUp, Lock, CheckCircle, Loader2, LogOut, Sparkles, Menu, X } from "lucide-react";
 import { CountryDropdown } from "./CountryDropdown";
 import { Footer } from "./Footer";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,6 +12,14 @@ export function EducationalDashboard() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [sent, setSent] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", on);
+    return () => window.removeEventListener("scroll", on);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,22 +64,63 @@ export function EducationalDashboard() {
   return (
     <div className="min-h-screen bg-background pb-32 overflow-hidden flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
+        <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${scrolled ? "glass rounded-full py-2.5" : ""}`}>
           <Link to="/" className="flex items-center gap-2.5">
             <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
               <Sparkles className="h-4 w-4" />
             </div>
             <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
           </Link>
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
-          >
-            <LogOut className="h-4 w-4" />
-            Sign Out
-          </button>
+
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-9 text-sm text-muted-foreground md:flex">
+            {[{label: "Portfolio", href: "#portfolio"}, {label: "Security", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
+              <a key={l.label} href={l.href} className="transition-colors hover:text-foreground">{l.label}</a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => navigate("/")}
+              className="hidden md:flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </button>
+            <button className="md:hidden p-2 text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute inset-x-4 top-full mt-2 rounded-2xl border border-border bg-background/95 p-6 shadow-2xl backdrop-blur-xl md:hidden"
+            >
+              <nav className="flex flex-col gap-4">
+                {[{label: "Portfolio", href: "#portfolio"}, {label: "Security", href: "#security"}, {label: "Support", href: "#contact"}].map(l => (
+                  <a key={l.label} href={l.href} onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium text-muted-foreground hover:text-foreground">
+                    {l.label}
+                  </a>
+                ))}
+                <hr className="border-border" />
+                <button
+                  onClick={() => navigate("/")}
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-border bg-surface px-4 py-3 text-sm font-medium transition-colors hover:bg-muted"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </button>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Background glow */}
@@ -91,7 +140,7 @@ export function EducationalDashboard() {
         </motion.div>
 
         {/* Section 1: How we improve investment amount */}
-        <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-32 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <motion.section id="portfolio" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-32 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-primary">
               <span className="h-px w-8 bg-primary" /> Portfolio Growth
@@ -131,7 +180,7 @@ export function EducationalDashboard() {
         </motion.section>
 
         {/* Section 2: Safe and Secure */}
-        <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-32 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <motion.section id="security" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mb-32 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="order-2 lg:order-1 relative h-[400px] rounded-3xl border border-border bg-surface p-6 glass flex items-center justify-center">
              <div className="relative">
                <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute inset-[-40px] rounded-full border border-dashed border-primary/30" />
@@ -166,7 +215,7 @@ export function EducationalDashboard() {
         </motion.section>
 
         {/* Contact Form Section */}
-        <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="max-w-4xl mx-auto">
+        <motion.section id="contact" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl mb-4">Ready to elevate your portfolio?</h2>
             <p className="text-muted-foreground">Reach out to your dedicated portfolio manager directly.</p>
