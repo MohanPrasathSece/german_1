@@ -12,8 +12,6 @@ export default async function handler(req: any, res: any) {
   const crmToken = process.env.CRM_TOKEN || "";
   const crmUrl = process.env.CRM_URL || "https://inwo.crmcore.me/api/lead_management/api/affiliates";
 
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
   console.log(`[Contact] Attempting CRM submission for ${email}`);
 
   const payload = {
