@@ -1,11 +1,14 @@
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring, animate } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring, animate, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   ShieldCheck, LineChart, Layers, Cpu, FileText, Building2,
   ArrowUpRight, Check, Star, Quote, Mail, Phone, MapPin, Clock,
-  Twitter, Linkedin, Github, Sparkles, TrendingUp, Lock, Award,
+  Twitter, Linkedin, Github, Sparkles, TrendingUp, Lock, Award, Loader2, Menu, X
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { AuthModal } from "./AuthModal";
+import { CountryDropdown } from "./CountryDropdown";
+import { Footer } from "./Footer";
 
 /* ---------------- helpers ---------------- */
 
@@ -64,32 +67,94 @@ function SectionLabel({ eyebrow, title, kicker }: { eyebrow: string; title: Reac
 
 /* ---------------- NAV ---------------- */
 
-function Nav() {
+function Nav({ onLoginClick }: { onLoginClick: () => void }) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", on);
     return () => window.removeEventListener("scroll", on);
   }, []);
+
+  const links = [
+    { label: "Home", href: "#" },
+    { label: "Exclusivity", href: "#exclusivity" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Apply", href: "#contact" },
+  ];
+
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
-      <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${scrolled ? "glass rounded-full py-2.5" : ""}`}>
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
-            <Sparkles className="h-4 w-4" />
+    <>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}>
+        <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ${scrolled ? "glass rounded-full py-2.5" : ""}`}>
+          <a href="#" className="flex items-center gap-2.5">
+            <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
+              <Sparkles className="h-4 w-4" />
+            </div>
+            <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+          </a>
+          
+          <nav className="hidden items-center gap-9 text-sm text-muted-foreground md:flex">
+            {links.map(l => (
+              <a key={l.label} href={l.href} className="transition-colors hover:text-foreground">{l.label}</a>
+            ))}
+          </nav>
+
+          <div className="hidden md:block">
+            <button onClick={onLoginClick} className="rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:bg-secondary">
+              Investor Login
+            </button>
           </div>
-          <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
-        </a>
-        <nav className="hidden items-center gap-9 text-sm text-muted-foreground md:flex">
-          {["Philosophy","Process","Results","Contact"].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="transition-colors hover:text-foreground">{l}</a>
-          ))}
-        </nav>
-        <a href="#contact" className="hidden rounded-full border border-border px-4 py-2 text-sm text-foreground transition-colors hover:bg-secondary md:inline-flex">
-          Investor Login
-        </a>
-      </div>
-    </header>
+
+          <button 
+            className="md:hidden text-foreground"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-[100] flex flex-col bg-background/95 backdrop-blur-3xl px-6 py-6 md:hidden"
+          >
+            <div className="flex items-center justify-between">
+              <a href="#" className="flex items-center gap-2.5" onClick={() => setMobileMenuOpen(false)}>
+                <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
+                  <Sparkles className="h-4 w-4" />
+                </div>
+                <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+              </a>
+              <button onClick={() => setMobileMenuOpen(false)} className="text-foreground">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="mt-12 flex flex-col gap-6 text-xl">
+              {links.map(l => (
+                <a key={l.label} href={l.href} onClick={() => setMobileMenuOpen(false)} className="border-b border-border pb-4 transition-colors hover:text-primary">
+                  {l.label}
+                </a>
+              ))}
+            </div>
+            <button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onLoginClick();
+              }} 
+              className="mt-8 rounded-full bg-primary py-4 text-center text-primary-foreground font-medium"
+            >
+              Investor Login
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -115,9 +180,9 @@ function Hero() {
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs text-primary backdrop-blur">
           <span className="h-1.5 w-1.5 rounded-full bg-primary animate-glow-pulse" />
-          Regulated digital asset management · Est. 2017
+          Q3 Tranche Closing · 1,497 of 1,500 Client Seats Filled
         </motion.div>
 
         <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
@@ -125,21 +190,19 @@ function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16,1,0.3,1] }}
               className="text-5xl leading-[0.98] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-              Compounding <em className="font-display italic text-gradient-gold">digital&nbsp;wealth</em><br />
-              with institutional discipline.
+              Compound your capital with <em className="font-display italic text-gradient-gold">institutional discipline</em>.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
               className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Aurelian Capital designs, custodies, and actively manages diversified crypto portfolios
-              for private clients and institutions — with the rigor of a modern asset manager and the
-              conviction of a long-term investor.
+              Aurelian Capital enforces a strict hard cap on active mandates to maximize ROI and protect outsized returns for our clients. 
+              With institutional demand surging, our Q3 allocation is 99% full. Apply immediately to bypass the 14-month waitlist.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}
               className="mt-10 flex flex-wrap items-center gap-4">
-              <MagneticButton href="#contact">Start Investing</MagneticButton>
-              <MagneticButton variant="ghost" href="#contact">Book Consultation</MagneticButton>
+              <MagneticButton href="#contact">Apply for 1 of 3 Remaining Seats</MagneticButton>
+              <MagneticButton variant="ghost" href="#contact">Join the Waitlist</MagneticButton>
             </motion.div>
 
             <motion.div
@@ -157,7 +220,7 @@ function Hero() {
             className="relative lg:mt-12">
             <div className="glass relative rounded-3xl p-6 shadow-[var(--shadow-elegant)]">
               <div className="flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
-                <span>Flagship Portfolio</span>
+                <span>Closed Institutional Portfolio</span>
                 <span className="flex items-center gap-1 text-primary"><TrendingUp className="h-3 w-3" /> Live</span>
               </div>
               <div className="mt-6 flex items-end justify-between">
@@ -206,9 +269,9 @@ function Hero() {
             </motion.div>
             <motion.div
               animate={{ y: [0, 12, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="glass absolute -bottom-6 -right-4 hidden rounded-2xl px-4 py-3 md:block">
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Clients</div>
-              <div className="font-display text-xl">12,400+</div>
+              className="glass absolute -bottom-6 -right-4 hidden rounded-2xl px-4 py-3 md:block border border-primary/30 bg-primary/5">
+              <div className="text-[10px] uppercase tracking-widest text-primary font-bold">Seats Remaining</div>
+              <div className="font-display text-xl text-primary">3</div>
             </motion.div>
           </motion.div>
         </div>
@@ -239,182 +302,34 @@ function Hero() {
   );
 }
 
-/* ---------------- PHILOSOPHY ---------------- */
 
-const pillars = [
-  { icon: Layers, title: "Portfolio Diversification", body: "Multi-strategy allocation across BTC, ETH, layer-1s, and yield-bearing assets — engineered to compound through cycles." },
-  { icon: ShieldCheck, title: "Institutional-Grade Custody", body: "Qualified custodians, cold-storage, multi-sig controls, and third-party attestation on every basis point." },
-  { icon: Cpu, title: "AI-Assisted Research", body: "Quantitative signals and human conviction combined — proprietary models score liquidity, risk, and regime shifts daily." },
-  { icon: LineChart, title: "Active Asset Management", body: "A dedicated investment committee rebalances weekly, harvests volatility, and manages drawdowns with discipline." },
-  { icon: FileText, title: "Transparent Reporting", body: "Monthly performance letters, real-time dashboards, audited returns — you always see exactly what you own." },
-  { icon: Building2, title: "Regulated Operations", body: "Registered with FinCEN, SOC 2 Type II certified, and structured under a segregated fund vehicle." },
-];
-
-function Philosophy() {
-  return (
-    <section id="philosophy" className="relative py-32">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionLabel
-          eyebrow="Why Aurelian"
-          title={<>A philosophy built for <em className="font-display italic text-gradient-gold">the next decade</em>, not the next quarter.</>}
-          kicker="We manage capital the way private banks have for a century — with fiduciary rigor, defensive discipline, and long-horizon conviction — applied to the most important asset class of our lifetime."
-        />
-
-        <div className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-          {pillars.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6, delay: i * 0.06 }}
-              className="group relative bg-background p-8 transition-colors hover:bg-surface md:p-10">
-              <div className="mb-6 grid h-11 w-11 place-items-center rounded-xl border border-border bg-surface text-primary transition-colors group-hover:border-primary/40">
-                <p.icon className="h-5 w-5" />
-              </div>
-              <div className="mb-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">0{i+1}</div>
-              <h3 className="text-2xl">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* stats strip */}
-        <div className="mt-16 grid gap-8 rounded-3xl border border-border bg-gradient-to-br from-surface to-background p-10 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { v: 1.84, prefix: "$", suffix: "B", d: 2, label: "Assets under management" },
-            { v: 12400, suffix: "+", d: 0, label: "Private & institutional clients" },
-            { v: 42.7, suffix: "%", d: 1, label: "3-year annualized return" },
-            { v: 99.98, suffix: "%", d: 2, label: "Custody uptime, 5-year record" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="font-display text-4xl tracking-tight text-gradient-gold sm:text-5xl">
-                <Counter to={s.v} prefix={s.prefix} suffix={s.suffix} decimals={s.d} />
-              </div>
-              <div className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- PROCESS ---------------- */
-
-const steps = [
-  { n: "01", t: "Discovery Consultation", d: "A private call with a portfolio strategist to understand your goals, horizon, risk tolerance, and existing exposure." },
-  { n: "02", t: "Portfolio Construction", d: "We build a bespoke allocation aligned to your mandate — conservative income, balanced growth, or opportunistic alpha." },
-  { n: "03", t: "Secure Allocation", d: "Funds settle into segregated qualified custody. You retain audit-visible ownership at every step." },
-  { n: "04", t: "Active Management & Reporting", d: "Weekly rebalancing, monthly investor letters, and 24/7 dashboards. Your dedicated advisor is a call away." },
-];
-
-function Process() {
-  return (
-    <section id="process" className="relative py-32">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionLabel
-          eyebrow="The Process"
-          title={<>From first conversation to <em className="font-display italic text-gradient-gold">compounding capital</em>.</>}
-          kicker="A four-step onboarding designed to feel closer to a private wealth relationship than a fintech signup."
-        />
-
-        <div className="relative mt-20">
-          <div className="absolute left-8 top-0 hidden h-full w-px bg-gradient-to-b from-primary/40 via-border to-transparent lg:block" />
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.n}
-                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7, delay: i * 0.1 }}
-                className={`relative rounded-3xl border border-border bg-surface p-8 md:p-10 ${i % 2 ? "lg:mt-16" : ""}`}>
-                <div className="mb-8 flex items-start justify-between">
-                  <div className="font-display text-6xl text-gradient-gold">{s.n}</div>
-                  <div className="grid h-10 w-10 place-items-center rounded-full border border-border text-primary">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </div>
-                </div>
-                <h3 className="text-2xl">{s.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.d}</p>
-                <div className="mt-6 hairline" />
-                <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
-                  <Check className="h-3.5 w-3.5 text-primary" /> Typical timeline: {["48 hrs","3–5 days","24 hrs","Ongoing"][i]}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ---------------- RESULTS ---------------- */
 
-const testimonials = [
-  { q: "Aurelian gave us the operational assurance our board required to allocate a meaningful sleeve of our treasury into digital assets.", a: "Marcus Vale", r: "CIO, Northbridge Family Office" },
-  { q: "Their reporting is what finally made crypto legible to my accountants. The performance is a bonus.", a: "Elena Zhou", r: "Founder, Meridian Ventures" },
-  { q: "Rare combination of long-term conviction and disciplined risk management. They compounded through the last cycle without a scare.", a: "James Okafor", r: "Managing Partner, Halcyon Advisors" },
-];
 
 const faqs = [
-  { q: "What is the minimum investment?", a: "Private client mandates begin at $50,000. Institutional and family office allocations begin at $1M." },
-  { q: "How are my assets custodied?", a: "All client assets are held with qualified third-party custodians in segregated, insured cold-storage — never on our balance sheet." },
-  { q: "How often is the portfolio rebalanced?", a: "Weekly by mandate, with intra-week tactical adjustments during defined regime shifts." },
-  { q: "Can I withdraw at any time?", a: "Yes. Liquidity is T+2 for most mandates, with no lockups on our core strategies." },
+  { q: "How do you consistently improve our invested capital?", a: "By combining AI-assisted quantitative models with rigorous risk management, we aggressively harvest market volatility to compound your portfolio through every cycle." },
+  { q: "How are my assets custodied while generating yield?", a: "All client assets are held with qualified third-party custodians in segregated, insured cold-storage - never on our balance sheet." },
+  { q: "How often is the portfolio rebalanced for maximum ROI?", a: "Weekly by mandate, with intra-week tactical adjustments during defined regime shifts to protect and grow your capital." },
+  { q: "Can I withdraw my gains at any time?", a: "Yes. Liquidity is T+2 for most mandates, with no lockups on our core strategies." },
 ];
 
 function Results() {
   return (
-    <section id="results" className="relative py-32">
+    <section id="faq" className="relative py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionLabel
-            eyebrow="Trust & Results"
-            title={<>Compounding trust, <em className="font-display italic text-gradient-gold">portfolio by portfolio</em>.</>}
+            eyebrow="Highly Exclusive & Proven"
+            title={<>Trusted by leading institutions. <em className="font-display italic text-gradient-gold">Closed to the general public</em>.</>}
           />
           <div className="flex items-center gap-2">
             {[...Array(5)].map((_,i) => <Star key={i} className="h-5 w-5 fill-primary text-primary" />)}
-            <span className="ml-2 text-sm text-muted-foreground">4.9 · 1,240+ verified reviews</span>
+            <span className="ml-2 text-sm text-muted-foreground">Allocations strictly capped at 1,500 active clients.</span>
           </div>
         </div>
 
-        {/* testimonials */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <motion.figure
-              key={t.a}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass flex h-full flex-col rounded-3xl p-8">
-              <Quote className="h-6 w-6 text-primary" />
-              <blockquote className="mt-6 flex-1 font-display text-xl leading-snug tracking-tight">"{t.q}"</blockquote>
-              <figcaption className="mt-8">
-                <div className="text-sm text-foreground">{t.a}</div>
-                <div className="text-xs text-muted-foreground">{t.r}</div>
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
 
-        {/* awards + partners */}
-        <div className="mt-16 grid gap-10 rounded-3xl border border-border bg-surface p-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
-          <div>
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">Recognized by</div>
-            <h3 className="mt-4 text-3xl leading-tight">Trusted by the industry, awarded by its peers.</h3>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {["Best Digital Asset Manager 2025","Top 50 Fintech","Wealth Innovator Award"].map(a => (
-                <span key={a} className="rounded-full border border-border bg-background px-4 py-2 text-xs text-muted-foreground">{a}</span>
-              ))}
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4">
-            {["FORBES","BLOOMBERG","REUTERS","COINDESK","FT","WSJ","BARRON'S","THE BLOCK"].map(n => (
-              <div key={n} className="bg-surface px-4 py-6 text-center font-display text-sm tracking-widest text-muted-foreground">{n}</div>
-            ))}
-          </div>
-        </div>
-
-        {/* FAQ */}
         <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_1.5fr]">
           <div>
             <div className="text-xs uppercase tracking-widest text-primary">FAQ</div>
@@ -442,6 +357,58 @@ function Results() {
 
 function Contact() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    country: "CH",
+    message: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccessMsg("");
+
+    try {
+      const parts = formData.name.trim().split(" ");
+      const firstName = parts[0];
+      const lastName = parts.slice(1).join(" ");
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName,
+          lastName,
+          phone: formData.phone,
+          countryName: formData.country,
+          description: formData.message,
+        })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setSent(true);
+        setSuccessMsg(data.message || "Contact submission successful.");
+      } else {
+        setError(data.message || data.error || "An unexpected failure occurred.");
+      }
+    } catch (err) {
+      setError("An unexpected failure occurred while connecting to the server.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputBase = "peer w-full rounded-xl border border-border bg-background/50 px-4 pb-2.5 pt-6 text-sm text-foreground placeholder-transparent transition-colors focus:border-primary focus:outline-none";
+
   return (
     <section id="contact" className="relative py-32">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -449,70 +416,61 @@ function Contact() {
       </div>
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel
-          eyebrow="Begin the Conversation"
-          title={<>Schedule a private <em className="font-display italic text-gradient-gold">strategy call</em>.</>}
-          kicker="Share a few details and a portfolio strategist will reach out within one business day to explore whether we're the right fit."
+          eyebrow="Final Call: Q3 Allocation Closing"
+          title={<>Secure one of the final <em className="font-display italic text-gradient-gold">3 client mandates</em>.</>}
+          kicker="Due to unprecedented institutional demand and our strict cap on active mandates, Q3 enrollment is closing permanently within 48 hours. Submit your details immediately to bypass the waitlist and secure a priority consultation."
         />
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div className="mt-16 mx-auto max-w-2xl">
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            onSubmit={handleSubmit}
             className="glass rounded-3xl p-8 md:p-10">
+            
+            {error && (
+              <div className="mb-6 rounded-lg bg-red-500/10 p-4 text-sm text-red-500 border border-red-500/20">
+                {error}
+              </div>
+            )}
+            
+            {successMsg && (
+              <div className="mb-6 rounded-lg bg-primary/10 p-4 text-sm text-primary border border-primary/20">
+                {successMsg}
+              </div>
+            )}
+
             <div className="grid gap-5 md:grid-cols-2">
-              <Field label="Full Name" name="name" />
-              <Field label="Email Address" name="email" type="email" />
-              <Field label="Phone Number" name="phone" type="tel" />
-              <Field label="Investment Budget" name="budget" as="select" options={["Under $50k","$50k – $250k","$250k – $1M","$1M – $5M","$5M+"]} />
+              <label className="relative block">
+                <input required type="text" className={inputBase} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} placeholder="Full Name" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Full Name</span>
+              </label>
+              <label className="relative block">
+                <input required type="email" className={inputBase} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="Email Address" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Email Address</span>
+              </label>
+              <div className="relative block">
+                 <div className="[&>div]:!bg-background/50 [&>div]:!pt-[1.4rem] [&>div]:!pb-2">
+                   <CountryDropdown value={formData.country} onChange={v => setFormData({ ...formData, country: v })} />
+                 </div>
+              </div>
+              <label className="relative block">
+                <input required type="tel" className={inputBase} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="Phone Number" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Phone Number</span>
+              </label>
             </div>
             <div className="mt-5">
-              <Field label="Investment Goals" name="goals" as="select" options={["Capital preservation","Balanced growth","Aggressive growth","Yield & income","Diversification hedge"]} />
-            </div>
-            <div className="mt-5">
-              <Field label="Message" name="message" as="textarea" />
+              <label className="relative block">
+                <textarea rows={4} className={inputBase} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Message (Optional)" />
+                <span className="pointer-events-none absolute left-4 top-2 text-[10px] uppercase tracking-widest text-muted-foreground">Message (Optional)</span>
+              </label>
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
               <p className="text-xs text-muted-foreground">By submitting, you consent to being contacted by an Aurelian advisor.</p>
-              <button type="submit" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft">
-                {sent ? "Request Received" : "Request Consultation"}
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <button disabled={loading || sent} type="submit" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft disabled:opacity-50">
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Request Received" : "Request Consultation"}
+                {!loading && !sent && <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
               </button>
             </div>
           </form>
-
-          <div className="space-y-4">
-            <div className="glass rounded-3xl p-8">
-              <div className="text-xs uppercase tracking-widest text-primary">Global Offices</div>
-              <ul className="mt-6 space-y-5 text-sm">
-                <li className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 text-primary" /><div><div className="text-foreground">Headquarters</div><div className="text-muted-foreground">32 Old Broad Street, London EC2N 1HQ</div></div></li>
-                <li className="flex items-start gap-3"><Mail className="mt-0.5 h-4 w-4 text-primary" /><div><div className="text-foreground">clients@aurelian.capital</div><div className="text-muted-foreground">General inquiries</div></div></li>
-                <li className="flex items-start gap-3"><Phone className="mt-0.5 h-4 w-4 text-primary" /><div><div className="text-foreground">+44 20 4534 8890</div><div className="text-muted-foreground">Client desk</div></div></li>
-                <li className="flex items-start gap-3"><Clock className="mt-0.5 h-4 w-4 text-primary" /><div><div className="text-foreground">Mon – Fri · 08:00 – 19:00 GMT</div><div className="text-muted-foreground">Emergency line 24/7 for clients</div></div></li>
-              </ul>
-              <div className="mt-6 flex gap-2">
-                {[Twitter, Linkedin, Github].map((I, i) => (
-                  <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary">
-                    <I className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Map placeholder */}
-            <div className="relative h-56 overflow-hidden rounded-3xl border border-border bg-surface">
-              <div className="absolute inset-0 grid-lines opacity-60" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,oklch(0.82_0.14_78/0.25),transparent_70%)]" />
-              <svg viewBox="0 0 400 200" className="absolute inset-0 h-full w-full opacity-70">
-                <path d="M0,120 Q100,80 200,110 T400,90" stroke="oklch(0.82 0.14 78 / 0.6)" strokeWidth="1" fill="none" />
-                <path d="M0,150 Q120,110 220,140 T400,120" stroke="oklch(0.82 0.14 78 / 0.4)" strokeWidth="1" fill="none" />
-              </svg>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                <div className="relative mx-auto mb-2 grid h-10 w-10 place-items-center rounded-full bg-primary/20">
-                  <span className="h-2 w-2 rounded-full bg-primary animate-glow-pulse" />
-                </div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">London · UK</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -539,65 +497,152 @@ function Field({ label, name, type = "text", as = "input", options = [] }:
   );
 }
 
-/* ---------------- FOOTER ---------------- */
 
-function Footer() {
+
+/* ---------------- EXCLUSIVITY ---------------- */
+
+function Exclusivity() {
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div>
-            <a href="#" className="flex items-center gap-2.5">
-              <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
-            </a>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A regulated digital asset management firm building long-horizon crypto portfolios for private clients and institutions worldwide.
-            </p>
-          </div>
+    <section id="exclusivity" className="relative py-32 border-y border-border/50 bg-surface/30">
+      <div className="mx-auto max-w-7xl px-6">
+        <SectionLabel
+          eyebrow="Strict Capacity Constraints"
+          title={<>Why our mandates are <em className="font-display italic text-gradient-gold">impossible to get</em>.</>}
+          kicker="Aurelian Capital’s algorithmic trading models are highly sensitive to market liquidity. If our AUM scales beyond our proprietary threshold, yields compress. To protect the outsized returns of our existing partners, we enforce a ruthless hard cap on active capital. We do not apologize for this exclusivity."
+        />
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
           {[
-            { h: "Company", l: ["Philosophy","Team","Careers","Press"] },
-            { h: "Products", l: ["Flagship Fund","Yield Mandate","Institutional","Advisory"] },
-            { h: "Legal", l: ["Privacy Policy","Terms of Service","Disclaimer","Regulatory Disclosures"] },
-          ].map(c => (
-            <div key={c.h}>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">{c.h}</div>
-              <ul className="mt-5 space-y-2 text-sm">
-                {c.l.map(x => <li key={x}><a href="#" className="text-foreground/80 transition-colors hover:text-primary">{x}</a></li>)}
-              </ul>
-            </div>
+            { n: "1,500", l: "Absolute Client Cap" },
+            { n: "14 Mo", l: "Current Waitlist" },
+            { n: "3", l: "Slots Available Now" },
+          ].map(s => (
+            <motion.div
+              key={s.l}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="glass rounded-3xl p-8 border border-primary/20 text-center">
+              <div className="font-display text-5xl text-gradient-gold">{s.n}</div>
+              <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">{s.l}</div>
+            </motion.div>
           ))}
         </div>
-
-        <div className="mt-14 hairline" />
-
-        <div className="mt-6 flex flex-col-reverse items-start justify-between gap-6 text-xs text-muted-foreground lg:flex-row lg:items-center">
-          <div>© {new Date().getFullYear()} Aurelian Capital Ltd. All rights reserved. Investment in digital assets involves risk of loss. Past performance is not indicative of future results.</div>
-          <div className="flex items-center gap-4">
-            <span>FinCEN #31000-XXX</span>
-            <span>·</span>
-            <span>FCA Registered</span>
-          </div>
-        </div>
       </div>
-    </footer>
+    </section>
   );
 }
 
 /* ---------------- ROOT ---------------- */
 
+const popupMessages = [
+  "1 mandate just secured by a Family Office in Geneva",
+  "Institutional allocation filled from London",
+  "Waitlist bypassed: Client admitted from Zurich",
+  "Capacity warning: Only 2 priority slots remaining",
+  "New mandate secured by a private client in Dubai"
+];
+
+function FomoPopup() {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    let hideTimeout: NodeJS.Timeout;
+    
+    const trigger = () => {
+      setVisible(true);
+      hideTimeout = setTimeout(() => setVisible(false), 5000);
+    };
+
+    const initial = setTimeout(trigger, 2000);
+    
+    const interval = setInterval(() => {
+      setIndex(prev => (prev + 1) % popupMessages.length);
+      trigger();
+    }, 12000);
+
+    return () => {
+      clearTimeout(initial);
+      clearTimeout(hideTimeout);
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          className="fixed bottom-6 left-6 z-[100] flex items-center gap-3 rounded-2xl border border-primary/30 bg-background/90 p-4 shadow-[0_0_40px_oklch(0.82_0.14_78/0.2)] backdrop-blur-xl"
+        >
+          <div className="grid h-8 w-8 place-items-center rounded-full bg-primary/20 text-primary">
+            <TrendingUp className="h-4 w-4" />
+          </div>
+          <p className="text-xs font-medium text-foreground sm:text-sm">{popupMessages[index]}</p>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function UrgentModal() {
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+    return () => { document.body.style.overflow = 'auto'; }
+  }, [open]);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 backdrop-blur-md bg-background/80">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="w-full max-w-lg overflow-hidden rounded-3xl border border-primary/30 bg-surface shadow-[0_0_80px_oklch(0.82_0.14_78/0.15)]"
+          >
+            <div className="p-8 sm:p-10 text-center">
+              <div className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full bg-primary/20 text-primary">
+                <Lock className="h-8 w-8" />
+              </div>
+              <h2 className="font-display text-3xl text-gradient-gold sm:text-4xl">High Demand Notice</h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Due to extremely high demand, our current enrollment is almost entirely full. We currently have exactly <strong className="text-foreground">3 spots remaining</strong> for new clients.
+              </p>
+              <p className="mt-4 text-sm text-primary font-medium">
+                Once these final spots are taken, you will be placed on a 14-month waitlist.
+              </p>
+              <button 
+                onClick={() => setOpen(false)}
+                className="mt-10 w-full rounded-full bg-primary px-6 py-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft"
+              >
+                I Understand & Enter Site
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function Landing() {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+
   return (
     <main className="relative">
-      <Nav />
+      <UrgentModal />
+      <FomoPopup />
+      <Nav onLoginClick={() => setAuthModalOpen(true)} />
       <Hero />
-      <Philosophy />
-      <Process />
+      <Exclusivity />
       <Results />
       <Contact />
       <Footer />
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     </main>
   );
 }
