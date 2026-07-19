@@ -22,7 +22,9 @@ export const COUNTRIES = [
   { code: "BR", name: "Brasilien", dial: "+55", regex: /^(\+55|0055)?\s?\(?\d{2}\)?\s?9\d{8}$/, example: "(11) 91234-5678" },
   { code: "MX", name: "Mexiko", dial: "+52", regex: /^(\+52|0052)?\s?\d{10}$/, example: "55 1234 5678" },
   { code: "JP", name: "Japan", dial: "+81", regex: /^(\+81|0081|0)[789]0\s?\d{4}\s?\d{4}$/, example: "090-1234-5678" },
-  { code: "CY", name: "Zypern", dial: "+357", regex: /^(\+357|00357)?9[45679]\d{6}$/, example: "99 123456" }
+  { code: "CY", name: "Zypern", dial: "+357", regex: /^(\+357|00357)?9[45679]\d{6}$/, example: "99 123456" },
+  { code: "IE", name: "Irland", dial: "+353", regex: /^(\+353|00353|0)?[89]\d{7,8}$/, example: "087 123 4567" },
+  { code: "GBR", name: "Great Britain", dial: "+44", regex: /^(\+44|0044|0)?7\d{9}$/, example: "07700 900077" }
 ];
 
 interface CountryDropdownProps {
