@@ -66,7 +66,7 @@ export function PrivacyPolicy() {
 
           <section>
             <h2 className="text-2xl font-display text-foreground mb-4">10. Kontakt</h2>
-            <p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter privacy@aurelian.capital.</p>
+            <p>Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter privacy@lumera.markets.</p>
           </section>
         </div>
       </div>

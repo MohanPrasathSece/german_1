@@ -92,7 +92,7 @@ function Nav({ onLoginClick }: { onLoginClick: () => void }) {
             <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
               <Sparkles className="h-4 w-4" />
             </div>
-            <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+            <span className="font-display text-lg tracking-tight">Lumera<span className="text-primary">.</span>Markets</span>
           </a>
           
           <nav className="hidden items-center gap-9 text-sm text-muted-foreground md:flex">
@@ -129,7 +129,7 @@ function Nav({ onLoginClick }: { onLoginClick: () => void }) {
                 <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
                   <Sparkles className="h-4 w-4" />
                 </div>
-                <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+                <span className="font-display text-lg tracking-tight">Lumera<span className="text-primary">.</span>Markets</span>
               </a>
               <button onClick={() => setMobileMenuOpen(false)} className="text-foreground">
                 <X className="h-6 w-6" />
@@ -195,7 +195,7 @@ function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.8 }}
               className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Aurelian Capital setzt eine strikte Obergrenze für aktive Mandate durch, um den ROI zu maximieren und überdurchschnittliche Renditen für unsere Kunden zu schützen. 
+              Lumera Markets setzt eine strikte Obergrenze für aktive Mandate durch, um den ROI zu maximieren und überdurchschnittliche Renditen für unsere Kunden zu schützen. 
               Da die institutionelle Nachfrage steigt, ist unsere Q3-Zuteilung zu 99% ausgeschöpft. Bewerben Sie sich sofort, um die 14-monatige Warteliste zu umgehen.
             </motion.p>
             <motion.div
@@ -464,7 +464,7 @@ function Contact() {
               </label>
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-xs text-muted-foreground">Mit dem Absenden stimmen Sie zu, von einem Aurelian-Berater kontaktiert zu werden.</p>
+              <p className="text-xs text-muted-foreground">Mit dem Absenden stimmen Sie zu, von einem Lumera-Berater kontaktiert zu werden.</p>
               <button disabled={loading || sent} type="submit" className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-gold-soft disabled:opacity-50">
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? "Anfrage erhalten" : "Beratung anfordern"}
                 {!loading && !sent && <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
@@ -508,7 +508,7 @@ function Exclusivity() {
         <SectionLabel
           eyebrow="Strenge Kapazitätsgrenzen"
           title={<>Warum unsere Mandate <em className="font-display italic text-gradient-gold">unmöglich zu bekommen sind</em>.</>}
-          kicker="Die algorithmischen Handelsmodelle von Aurelian Capital reagieren sehr empfindlich auf Marktliquidität. Wenn unsere AUM unsere proprietäre Schwelle überschreiten, sinken die Renditen. Um die überdurchschnittlichen Renditen unserer bestehenden Partner zu schützen, setzen wir eine rücksichtslose Obergrenze für aktives Kapital durch. Wir entschuldigen uns nicht für diese Exklusivität."
+          kicker="Die algorithmischen Handelsmodelle von Lumera Markets reagieren sehr empfindlich auf Marktliquidität. Wenn unsere AUM unsere proprietäre Schwelle überschreiten, sinken die Renditen. Um die überdurchschnittlichen Renditen unserer bestehenden Partner zu schützen, setzen wir eine rücksichtslose Obergrenze für aktives Kapital durch. Wir entschuldigen uns nicht für diese Exklusivität."
         />
         <div className="mt-16 grid gap-8 md:grid-cols-3">
           {[

@@ -51,12 +51,12 @@ export function TermsConditions() {
 
           <section>
             <h2 className="text-2xl font-display text-foreground mb-4">7. Geistiges Eigentum</h2>
-            <p>Der gesamte Inhalt dieser Website, einschließlich Texte, Grafiken, Logos und Software, ist Eigentum von Aurelian Capital oder seinen Lizenzgebern und durch geistige Eigentumsrechte geschützt.</p>
+            <p>Der gesamte Inhalt dieser Website, einschließlich Texte, Grafiken, Logos und Software, ist Eigentum von Lumera Markets oder seinen Lizenzgebern und durch geistige Eigentumsrechte geschützt.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-display text-foreground mb-4">8. Haftungsbeschränkung</h2>
-            <p>Soweit gesetzlich zulässig, haftet Aurelian Capital nicht für indirekte, zufällige, besondere, Folge- oder Strafschäden, die sich aus oder im Zusammenhang mit Ihrer Nutzung unserer Dienste ergeben.</p>
+            <p>Soweit gesetzlich zulässig, haftet Lumera Markets nicht für indirekte, zufällige, besondere, Folge- oder Strafschäden, die sich aus oder im Zusammenhang mit Ihrer Nutzung unserer Dienste ergeben.</p>
           </section>
 
           <section>
@@ -66,12 +66,12 @@ export function TermsConditions() {
           
           <section>
             <h2 className="text-2xl font-display text-foreground mb-4">10. Geltendes Recht & Streitigkeiten</h2>
-            <p>Diese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der Aurelian Capital tätig ist, und werden in Übereinstimmung mit diesen ausgelegt. Alle Streitigkeiten, die sich aus diesen Bedingungen ergeben, unterliegen der ausschließlichen Zuständigkeit der zuständigen Gerichte.</p>
+            <p>Diese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der Lumera Markets tätig ist, und werden in Übereinstimmung mit diesen ausgelegt. Alle Streitigkeiten, die sich aus diesen Bedingungen ergeben, unterliegen der ausschließlichen Zuständigkeit der zuständigen Gerichte.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-display text-foreground mb-4">11. Kontakt</h2>
-            <p>Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns bitte unter legal@aurelian.capital.</p>
+            <p>Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns bitte unter legal@lumera.markets.</p>
           </section>
         </div>
       </div>

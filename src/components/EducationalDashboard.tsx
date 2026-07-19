@@ -70,7 +70,7 @@ export function EducationalDashboard() {
             <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
               <Sparkles className="h-4 w-4" />
             </div>
-            <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+            <span className="font-display text-lg tracking-tight">Lumera<span className="text-primary">.</span>Markets</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -132,7 +132,7 @@ export function EducationalDashboard() {
       <div className="mx-auto max-w-7xl px-6 pt-24 flex-1">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl mb-24">
           <h1 className="text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl mb-6">
-            Willkommen bei <em className="font-display italic text-gradient-gold">Aurelian Insights</em>
+            Willkommen bei <em className="font-display italic text-gradient-gold">Lumera Insights</em>
           </h1>
           <p className="text-lg text-muted-foreground">
             Verstehen Sie, wie wir Ihr Kapital sichern und Ihr Portfolio durch Strategien auf institutionellem Niveau optimieren.

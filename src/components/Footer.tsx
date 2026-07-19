@@ -12,7 +12,7 @@ export function Footer() {
               <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <span className="font-display text-lg tracking-tight">Aurelian<span className="text-primary">.</span>Capital</span>
+              <span className="font-display text-lg tracking-tight">Lumera<span className="text-primary">.</span>Markets</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Ein reguliertes Unternehmen für die Verwaltung digitaler Vermögenswerte, das langfristige Krypto-Portfolios für Privatkunden und Institutionen weltweit aufbaut.
@@ -45,7 +45,7 @@ export function Footer() {
         <div className="mt-14 hairline" />
 
         <div className="mt-6 flex flex-col-reverse items-start justify-between gap-6 text-xs text-muted-foreground lg:flex-row lg:items-center">
-          <div>© {new Date().getFullYear()} Aurelian Capital Ltd. Alle Rechte vorbehalten. Die Investition in digitale Vermögenswerte ist mit einem Verlustrisiko verbunden. Die Wertentwicklung der Vergangenheit ist kein Indikator für zukünftige Ergebnisse.</div>
+          <div>© {new Date().getFullYear()} Lumera Markets Ltd. Alle Rechte vorbehalten. Die Investition in digitale Vermögenswerte ist mit einem Verlustrisiko verbunden. Die Wertentwicklung der Vergangenheit ist kein Indikator für zukünftige Ergebnisse.</div>
           <div className="flex items-center gap-4">
             <span>FinCEN #31000-XXX</span>
             <span>·</span>

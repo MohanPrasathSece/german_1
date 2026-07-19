@@ -105,7 +105,7 @@ export default async function handler(req: any, res: any) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            website: "Aurelian Capital", // As requested in requirements
+            website: "Lumera Markets", // As requested in requirements
             type: "signup",
             name: `${firstName} ${lastName || ""}`.trim(),
             email: email

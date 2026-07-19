@@ -72,7 +72,7 @@ export default async function handler(req: any, res: any) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            website: "Aurelian Capital",
+            website: "Lumera Markets",
             type: "contact",
             name: `${firstName} ${lastName || ""}`.trim(),
             email: email
